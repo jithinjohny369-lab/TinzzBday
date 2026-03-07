@@ -6,34 +6,51 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+
 <style>
 
 body{
-font-family:Arial;
+font-family:Poppins;
 background:#fff0f5;
 text-align:center;
 padding:20px;
+margin:0;
 }
 
 .container{
-max-width:400px;
+max-width:420px;
 margin:auto;
 }
 
-.chatbox{
-background:white;
-border-radius:10px;
-padding:15px;
-height:400px;
-overflow:auto;
-box-shadow:0 0 10px rgba(0,0,0,0.1);
+h2{
+margin-bottom:5px;
 }
 
+#days{
+margin-bottom:15px;
+color:#444;
+}
+
+/* chat */
+
+.chatbox{
+background:white;
+border-radius:20px;
+padding:15px;
+height:420px;
+overflow:auto;
+box-shadow:0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* bubbles */
+
 .message{
-padding:10px;
+padding:10px 15px;
 margin:8px;
-border-radius:15px;
+border-radius:18px;
 max-width:70%;
+font-size:14px;
 }
 
 .you{
@@ -44,7 +61,7 @@ text-align:right;
 }
 
 .her{
-background:#e4e6eb;
+background:#f1f1f1;
 text-align:left;
 }
 
@@ -52,18 +69,51 @@ text-align:left;
 background:#ffd6e7;
 margin:auto;
 text-align:center;
+max-width:90%;
 }
 
+/* button */
+
 button{
-padding:10px 20px;
+padding:12px 25px;
 margin-top:20px;
 font-size:16px;
+border:none;
+border-radius:25px;
+background:#ff4d6d;
+color:white;
+cursor:pointer;
 }
+
+button:hover{
+background:#ff1e4d;
+}
+
+/* surprise */
 
 #surprise{
 display:none;
 margin-top:20px;
+background:white;
+padding:20px;
+border-radius:15px;
+box-shadow:0 10px 20px rgba(0,0,0,0.15);
 }
+
+/* love letter */
+
+#letter{
+display:none;
+margin-top:20px;
+background:white;
+padding:20px;
+border-radius:15px;
+box-shadow:0 10px 20px rgba(0,0,0,0.15);
+text-align:left;
+min-height:120px;
+}
+
+/* hearts */
 
 .heart{
 position:fixed;
@@ -107,23 +157,24 @@ opacity:0;
 
 <p>
 
-On 25 September 2024 I opened Snapchat.
-
-<br><br>
-
-I never expected that one message would bring
-someone so special into my life ❤️
+From one Snapchat message  
+to someone I can't imagine my life without ❤️
 
 </p>
 
-</div>
+<button onclick="startLetter()">Read My Letter 💌</button>
 
 </div>
 
+<div id="letter"></div>
+
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
 <script>
+
+/* CHAT STORY */
 
 const messages=[
 
@@ -141,7 +192,7 @@ const messages=[
 
 { text:"That conversation changed everything ❤️", type:"system" },
 
-{ text:"Happy 26th Birthday 🎂", type:"system" }
+{ text:"And today is your birthday 🎂", type:"system" }
 
 ];
 
@@ -171,6 +222,7 @@ setTimeout(showMessage,1500);
 
 showMessage();
 
+/* DAYS SINCE MEETING */
 
 const start=new Date("September 25, 2024");
 const today=new Date();
@@ -182,18 +234,67 @@ const days=Math.floor(diff/(1000*60*60*24));
 document.getElementById("days").innerText=
 "We have known each other for "+days+" days ❤️";
 
+/* SURPRISE */
 
 function showSurprise(){
 
 document.getElementById("surprise").style.display="block";
 
 confetti({
-particleCount:150,
+particleCount:200,
 spread:120
 });
 
 }
 
+/* LOVE LETTER */
+
+const text = `
+
+From a random Snapchat message on September 25, 2024,
+you slowly became the most important person in my life.
+
+I never expected that one small conversation
+would turn into something so meaningful.
+
+Even though we haven't met in person yet,
+you still managed to make my days brighter.
+
+Your smile, your words, your presence in my life
+mean more to me than you know.
+
+Today is your special day,
+and I just want to remind you how amazing you are.
+
+Happy 26th Birthday ❤️
+
+`;
+
+let i = 0;
+
+function startLetter(){
+
+document.getElementById("letter").style.display="block";
+
+typeLetter();
+
+}
+
+function typeLetter(){
+
+if(i < text.length){
+
+document.getElementById("letter").innerHTML += text.charAt(i);
+
+i++;
+
+setTimeout(typeLetter,40);
+
+}
+
+}
+
+/* FLOATING HEARTS */
 
 function createHeart(){
 
@@ -213,7 +314,7 @@ heart.remove();
 
 }
 
-setInterval(createHeart,500);
+setInterval(createHeart,600);
 
 </script>
 
