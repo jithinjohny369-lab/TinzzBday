@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Our Story ❤️</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+
+body{
+font-family:Arial;
+background:#fff0f5;
+text-align:center;
+padding:20px;
+}
+
+.container{
+max-width:400px;
+margin:auto;
+}
+
+.chatbox{
+background:white;
+border-radius:10px;
+padding:15px;
+height:400px;
+overflow:auto;
+box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+.message{
+padding:10px;
+margin:8px;
+border-radius:15px;
+max-width:70%;
+}
+
+.you{
+background:#0084ff;
+color:white;
+margin-left:auto;
+text-align:right;
+}
+
+.her{
+background:#e4e6eb;
+text-align:left;
+}
+
+.system{
+background:#ffd6e7;
+margin:auto;
+text-align:center;
+}
+
+button{
+padding:10px 20px;
+margin-top:20px;
+font-size:16px;
+}
+
+#surprise{
+display:none;
+margin-top:20px;
+}
+
+.heart{
+position:fixed;
+font-size:20px;
+animation:floatUp 4s linear forwards;
+}
+
+@keyframes floatUp{
+
+0%{
+transform:translateY(0);
+opacity:1;
+}
+
+100%{
+transform:translateY(-600px);
+opacity:0;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Our Story ❤️</h2>
+
+<div id="days"></div>
+
+<div class="chatbox" id="chat"></div>
+
+<button onclick="showSurprise()">Open Birthday Surprise 🎁</button>
+
+<div id="surprise">
+
+<h2>Happy 26th Birthday 🎂</h2>
+
+<p>
+
+On 25 September 2024 I opened Snapchat.
+
+<br><br>
+
+I never expected that one message would bring
+someone so special into my life ❤️
+
+</p>
+
+</div>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<script>
+
+const messages=[
+
+{ text:"25 Sept 2024", type:"system" },
+
+{ text:"Hi 🙂", type:"her" },
+
+{ text:"Hello", type:"you" },
+
+{ text:"Where are you from?", type:"her" },
+
+{ text:"Kerala", type:"you" },
+
+{ text:"Nice to meet you!", type:"her" },
+
+{ text:"That conversation changed everything ❤️", type:"system" },
+
+{ text:"Happy 26th Birthday 🎂", type:"system" }
+
+];
+
+let index=0;
+
+function showMessage(){
+
+if(index>=messages.length) return;
+
+const chat=document.getElementById("chat");
+
+const msg=document.createElement("div");
+
+msg.className="message "+messages[index].type;
+
+msg.innerText=messages[index].text;
+
+chat.appendChild(msg);
+
+chat.scrollTop=chat.scrollHeight;
+
+index++;
+
+setTimeout(showMessage,1500);
+
+}
+
+showMessage();
+
+
+const start=new Date("September 25, 2024");
+const today=new Date();
+
+const diff=today-start;
+
+const days=Math.floor(diff/(1000*60*60*24));
+
+document.getElementById("days").innerText=
+"We have known each other for "+days+" days ❤️";
+
+
+function showSurprise(){
+
+document.getElementById("surprise").style.display="block";
+
+confetti({
+particleCount:150,
+spread:120
+});
+
+}
+
+
+function createHeart(){
+
+const heart=document.createElement("div");
+
+heart.className="heart";
+
+heart.innerHTML="❤️";
+
+heart.style.left=Math.random()*100+"vw";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},4000);
+
+}
+
+setInterval(createHeart,500);
+
+</script>
+
+</body>
+</html>
